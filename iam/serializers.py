@@ -75,7 +75,7 @@ class SignUpSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
-    phone_number = serializers.CharField(required=True)
+    phone_number = serializers.CharField(required=False)
     password = serializers.CharField(write_only=True, required=True)
     is_active = serializers.BooleanField(required=False, default=True)
     is_staff = serializers.BooleanField(required=False, default=False)

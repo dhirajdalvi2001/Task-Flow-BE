@@ -39,33 +39,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-]
-
-# Add your frontend domain with proper scheme (http/https)
-CORS_ALLOWED_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-    'cache-control',
-    'pragma',
-    'sec-ch-ua',
-    'sec-ch-ua-mobile',
-    'sec-ch-ua-platform',
-]
-
-CORS_EXPOSE_HEADERS = [
-    'content-length',
-    'content-range',
-]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -91,10 +64,12 @@ INSTALLED_APPS = [
     'taskflow',
     'tasks',
     'iam',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
