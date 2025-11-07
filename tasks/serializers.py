@@ -123,3 +123,9 @@ class TaskSequenceSerializer(serializers.Serializer):
             task.save(update_fields=["sequence"])
 
         return task
+
+class TaskUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'is_checklist', 'is_pinned', 'due_date', 'priority', 'status']
+       

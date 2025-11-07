@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Task
-from .serializers import TaskListCreateSerializer, TaskSerializer, TaskSequenceSerializer
+from .serializers import TaskListCreateSerializer, TaskSerializer, TaskSequenceSerializer, TaskUpdateSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from rest_framework.response import Response
@@ -39,6 +39,14 @@ class TaskDetailsUpdateDeleteView(APIView):
         task = Task.objects.get(id=id, user=request.user)
         serializer = TaskSerializer(task)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def patch(self, request, id: uuid.UUID):
+        task = Task.objects.get(id=id, user=request.user)
+        serializer = TaskSerializer(task, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
         task = Task.objects.get(id=kwargs['id'])

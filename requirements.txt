@@ -2,5 +2,5 @@ uuid==1.30
 djangorestframework==3.16.1
 djangorestframework-simplejwt==5.5.1
 django-cors-headers==4.9.0
-pyscopg2-binary==2.9.10
+psycopg2-binary==2.9.10
 python-dotenv==1.2.1
