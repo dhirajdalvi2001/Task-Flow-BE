@@ -40,4 +40,4 @@ RUN mkdir -p /app/static /app/media
 EXPOSE 8000
 
 # Start the Django application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "taskflow.wsgi:application"]

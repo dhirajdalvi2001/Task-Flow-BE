@@ -17,7 +17,7 @@ services:
       - '8002:8000'
     networks:
       - shared-network
-    command: ['gunicorn', '--bind', '0.0.0.0:8000', 'core.wsgi:application']
+    command: ['gunicorn', '--bind', '0.0.0.0:8000', 'taskflow.wsgi:application']
 
   taskflow-db:
     image: postgres:16
