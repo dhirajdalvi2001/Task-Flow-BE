@@ -8,7 +8,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: 'postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@taskflow-db:5434/${POSTGRES_DB}'
+      DATABASE_URL: 'postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@taskflow-db:5432/${POSTGRES_DB}'
     volumes:
       - .:/app
       - taskflow_static_volume:/app/static
