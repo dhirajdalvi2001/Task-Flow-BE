@@ -37,8 +37,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://taskflowhq.vercel.app"
-    "https://taskflow-api.kd-studio.in"
+    "https://taskflowhq.vercel.app",
+    "https://taskflow-api.kd-studio.in",
     "https://www.taskflow-api.kd-studio.in"
 ]
 
@@ -46,8 +46,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://taskflowhq.vercel.app"
-    "https://taskflow-api.kd-studio.in"
+    "https://taskflowhq.vercel.app",
+    "https://taskflow-api.kd-studio.in",
     "https://www.taskflow-api.kd-studio.in"
 ]
 
@@ -56,7 +56,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "13.127.82.104",
     "taskflowhq.vercel.app",
-    "taskflow-api.kd-studio.in"
+    "taskflow-api.kd-studio.in",
     "www.taskflow-api.kd-studio.in"
 ]
 
