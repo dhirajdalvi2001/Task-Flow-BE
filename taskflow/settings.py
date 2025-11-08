@@ -42,6 +42,28 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.taskflow-api.kd-studio.in"
 ]
 
+# Allow all headers for CORS
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
@@ -56,8 +78,13 @@ ALLOWED_HOSTS = [
     "13.127.82.104",
     "taskflowhq.vercel.app",
     "taskflow-api.kd-studio.in",
-    "www.taskflow-api.kd-studio.in"
+    "www.taskflow-api.kd-studio.in",
+    ".kd-studio.in",  # Allow all subdomains
 ]
+
+# Trust proxy headers (required when behind nginx)
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
