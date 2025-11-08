@@ -57,6 +57,7 @@ ALLOWED_HOSTS = [
     "13.127.82.104",
     "taskflowhq.vercel.app",
     "taskflow-api.kd-studio.in"
+    "www.taskflow-api.kd-studio.in"
 ]
 
 
