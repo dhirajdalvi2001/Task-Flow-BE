@@ -38,7 +38,8 @@ ALLOWED_HOSTS = [
     "taskflowhq.vercel.app",
     "taskflow-api.kd-studio.in",
     "www.taskflow-api.kd-studio.in",
-    "*.kd-studio.in", # Allow all subdomains
+    "kd-studio.in",
+    "www.kd-studio.in",
     "taskflow-be"
 ]
 
@@ -46,14 +47,30 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
     "https://taskflowhq.vercel.app",
+    "http://taskflow-api.kd-studio.in",
     "https://taskflow-api.kd-studio.in",
+    "http://www.taskflow-api.kd-studio.in",
     "https://www.taskflow-api.kd-studio.in",
-    'https://kd-studio.in',  # For production
-    'https://www.kd-studio.in',  # For production
+    "http://kd-studio.in",
+    "https://kd-studio.in",
+    "http://www.kd-studio.in",
+    "https://www.kd-studio.in",
 ]
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # Trust proxy headers (required when behind nginx)
 USE_X_FORWARDED_HOST = True
