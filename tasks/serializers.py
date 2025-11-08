@@ -17,9 +17,10 @@ class TaskListCreateSerializer(serializers.Serializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     def validate_due_date(self, value):
-        if value < datetime.now().date():
-            raise serializers.ValidationError("Due date cannot be in the past")
-        return value
+        if value is not None:
+            if value < datetime.now().date():
+                raise serializers.ValidationError("Due date cannot be in the past")
+            return value
     
     def validate_priority(self, value):
         if value not in Task.Priority.values:
@@ -32,10 +33,19 @@ class TaskListCreateSerializer(serializers.Serializer):
         return value
 
     def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
-        validated_data['sequence'] = Task.objects.filter(user=validated_data['user']).count() + 1
-        return Task.objects.create(**validated_data)
+        user = self.context["request"].user
 
+        with transaction.atomic():
+            # Shift all existing tasks down by +1
+            Task.objects.filter(user=user).update(sequence=F("sequence") + 1)
+
+            # Insert the new task at the top
+            validated_data["user"] = user
+            validated_data["sequence"] = 1
+            task = Task.objects.create(**validated_data)
+
+        return task
+        
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
