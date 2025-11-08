@@ -31,47 +31,6 @@ SECRET_KEY = 'django-insecure-uv#b&3z=l657lyl(cvy=yc8h!3l*$cd=cjvta7ie%bvng6pytu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# CORS settings
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://taskflowhq.vercel.app",
-    "https://taskflow-api.kd-studio.in",
-    "https://www.taskflow-api.kd-studio.in"
-]
-
-# Allow all headers for CORS
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with'
-]
-
-CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT'
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://taskflowhq.vercel.app",
-    "https://taskflow-api.kd-studio.in",
-    "https://www.taskflow-api.kd-studio.in"
-]
-
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
@@ -79,11 +38,26 @@ ALLOWED_HOSTS = [
     "taskflowhq.vercel.app",
     "taskflow-api.kd-studio.in",
     "www.taskflow-api.kd-studio.in",
-    ".kd-studio.in" # Allow all subdomains
+    "*.kd-studio.in", # Allow all subdomains
+    "taskflow-be"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://taskflowhq.vercel.app",
+    "https://taskflow-api.kd-studio.in",
+    "https://www.taskflow-api.kd-studio.in",
+    'https://kd-studio.in',  # For production
+    'https://www.kd-studio.in',  # For production
+]
+
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Trust proxy headers (required when behind nginx)
 USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -103,10 +77,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
