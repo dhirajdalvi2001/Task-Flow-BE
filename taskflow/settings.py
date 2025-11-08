@@ -52,7 +52,7 @@ CORS_ALLOW_HEADERS = [
     'origin',
     'user-agent',
     'x-csrftoken',
-    'x-requested-with',
+    'x-requested-with'
 ]
 
 CORS_ALLOW_METHODS = [
@@ -61,7 +61,7 @@ CORS_ALLOW_METHODS = [
     'OPTIONS',
     'PATCH',
     'POST',
-    'PUT',
+    'PUT'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -79,7 +79,7 @@ ALLOWED_HOSTS = [
     "taskflowhq.vercel.app",
     "taskflow-api.kd-studio.in",
     "www.taskflow-api.kd-studio.in",
-    ".kd-studio.in",  # Allow all subdomains
+    ".kd-studio.in" # Allow all subdomains
 ]
 
 # Trust proxy headers (required when behind nginx)
