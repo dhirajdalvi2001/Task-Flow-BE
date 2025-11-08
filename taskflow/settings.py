@@ -37,18 +37,21 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://taskflowhq.vercel.app"
 ]
 
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://taskflowhq.vercel.app"
 ]
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "13.127.82.104"
+    "13.127.82.104",
+    "taskflowhq.vercel.app"
 ]
 
 

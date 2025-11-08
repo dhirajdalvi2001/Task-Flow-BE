@@ -1,0 +1,47 @@
+services:
+  taskflow-be:
+    build: .
+    container_name: taskflow-be
+    restart: always
+    depends_on:
+      - taskflow-db
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: 'postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@taskflow-db:5434/${POSTGRES_DB}'
+    volumes:
+      - .:/app
+      - taskflow_static_volume:/app/static
+      - taskflow_media_volume:/app/media
+    ports:
+      - '8002:8000'
+    networks:
+      - shared-network
+    command: ['gunicorn', '--bind', '0.0.0.0:8000', 'core.wsgi:application']
+
+  taskflow-db:
+    image: postgres:16
+    container_name: taskflow-db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - taskflow_postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5434:5432'
+    networks:
+      - shared-network
+
+volumes:
+  taskflow_postgres_data:
+  taskflow_static_volume:
+  taskflow_media_volume:
+
+networks:
+  shared-network:
+    external: true
+    name: unified-network
