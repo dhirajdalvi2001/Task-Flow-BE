@@ -5,11 +5,13 @@ from tasks.models import Task
 from django.utils import timezone
 from datetime import timedelta
 from taskflow.models import User
+from rest_framework.permissions import IsAuthenticated
 
 class ChartView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         is_superuser = request.user.is_superuser
-
         total_tasks = Task.objects.filter(user=request.user).count()
         pending_tasks = Task.objects.filter(user=request.user, status=Task.Status.PENDING).count()
         in_progress_tasks = Task.objects.filter(user=request.user, status=Task.Status.IN_PROGRESS).count()
